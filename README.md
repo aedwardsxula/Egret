@@ -1,2 +1,2 @@
 # Egret
-sammysotrill, zodagoatfr, justrobin14, kyleighharkless
+smax-byte, zodagoatfr, justrobin14, kyleighharkless
