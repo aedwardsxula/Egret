@@ -14,16 +14,18 @@ Our goal is to analyze, enhance, and document six repositories — improving the
 
 ---
 
-### 🗂️ Selected Repositories (Priority Order)
+### 🗂️ Selected Repository
 
 1. [ProtectFromPlagiarismChecker](https://github.com/aks060/ProtectFromPlagiarismChecker) — Python script by @aks060. ([GitHub][1])
-2. [Generic N-ary Tree](https://github.com/c05mic/GenericN-aryTree) — Java implementation by @c05mic. ([GitHub][2])
-3. [Sorting Algorithms (OpenSource)](https://github.com/SvenWoltmann/sorting-algorithms-ultimate-guide) — repository by SvenWoltmann. ([GitHub][3])
-4. [IMDB Top Scrape](https://github.com/Devanshi1206/IMDb-Top-250-Movies) — Python scraping project. ([GitHub][4])
-5. [Sorting Visualiser (Java)](https://github.com/Sarvesh223/Sorting_Visualiser_minor) — Java sorting visualizer project. ([GitHub][5])
-6. [Sentiment Analysis of Twitter Data](https://github.com/sharmaroshan/Twitter-Sentiment-Analysis) — Twitter-sentiment project. ([GitHub][6])
+   
 
+### 🗂️ Other Repositories (Priority Order)
 
+1. [Generic N-ary Tree](https://github.com/c05mic/GenericN-aryTree) — Java implementation by @c05mic. ([GitHub][2])
+2. [Sorting Algorithms (OpenSource)](https://github.com/SvenWoltmann/sorting-algorithms-ultimate-guide) — repository by SvenWoltmann. ([GitHub][3])
+3. [IMDB Top Scrape](https://github.com/Devanshi1206/IMDb-Top-250-Movies) — Python scraping project. ([GitHub][4])
+4. [Sorting Visualiser (Java)](https://github.com/Sarvesh223/Sorting_Visualiser_minor) — Java sorting visualizer project. ([GitHub][5])
+5. [Sentiment Analysis of Twitter Data](https://github.com/sharmaroshan/Twitter-Sentiment-Analysis) — Twitter-sentiment project. ([GitHub][6])
 
 ## 🚀 XULA Driver
 -  
