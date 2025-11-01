@@ -1,5 +1,6 @@
 # imports
 import requests
+from bs4 import BeautifulSoup
 import json
 import sys
 
@@ -33,7 +34,28 @@ def main():
     print(" Team Egret XULA Driver running...")
 
 # Scrape Centennial Campaign Act
+    def scrape_website(url, element, class_name = None):
+    try:
+        headers = {"User-Agent":("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36")}
+        
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  
+
+        soup = BeautifulSoup(response.content, "lxml")
+        scraped_text = soup.find_all(element, class_=class_name) if class_name else soup.find(element)
+
+        if scraped_text:
+            return scraped_text
+        else:
+            return "Nothing found."
+
+    except Exception as e:
+        return (f"An error occurred while scraping the website: {e}")
     
+def strip_text(scraped_text):
+    for text in scraped_text:
+        print(text.get_text(strip=True))
 
 # standard entry point
 if __name__ == "__main__":
