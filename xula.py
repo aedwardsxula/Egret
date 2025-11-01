@@ -32,9 +32,15 @@ def main():
     # TODO [All]: Print or save the processed sentence
 
     print(" Team Egret XULA Driver running...")
+    
+    xula_centennial_campaign = scrape_website("https://www.xula.edu/about/centennial.html",
+                                              "span",
+                                              "style",
+                                              "color: #000000; font-family: verdana, geneva, sans-serif; font-size: 12pt;")
+    print(xula_centennial_campaign)
 
 # Scrape Centennial Campaign Act
-    def scrape_website(url, element, class_name = None):
+def scrape_website(url:str , element:str, attribute_name = "div", attribute = None):
     try:
         headers = {"User-Agent":("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/120.0.0.0 Safari/537.36")}
@@ -42,20 +48,31 @@ def main():
         response = requests.get(url, headers=headers)
         response.raise_for_status()  
 
-        soup = BeautifulSoup(response.content, "lxml")
-        scraped_text = soup.find_all(element, class_=class_name) if class_name else soup.find(element)
+        soup = BeautifulSoup(response.content, 'html.parser')
 
-        if scraped_text:
-            return scraped_text
+        scraped_text = ''
+
+        if attribute:
+            scraped_text = soup.find(element, attrs={attribute_name: attribute})
         else:
-            return "Nothing found."
+            soup.find(element)
+
+        return print_scraped_text(scraped_text)
 
     except Exception as e:
         return (f"An error occurred while scraping the website: {e}")
     
-def strip_text(scraped_text):
-    for text in scraped_text:
-        print(text.get_text(strip=True))
+def print_scraped_text(scraped_text):
+    if scraped_text:
+        return scraped_text
+    else:
+        return "Nothing found."
+    
+# def strip_text(scraped_text):
+#     stripped_text = []
+#     for text in scraped_text:
+#         # print(text.get_text(strip=True))
+#         return text.append(stripped_text)
 
 # standard entry point
 if __name__ == "__main__":
