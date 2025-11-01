@@ -37,8 +37,9 @@ def main():
                                               "span",
                                               "style",
                                               "color: #000000; font-family: verdana, geneva, sans-serif; font-size: 12pt;")
-    print(xula_centennial_campaign)
-
+    campaign_impact_paragraph = 2
+    print(f"\nXULA's Campaign Impact: \n{xula_centennial_campaign[campaign_impact_paragraph]}\n")
+    
 # Scrape Centennial Campaign Act
 def scrape_website(url:str , element:str, attribute_name = "div", attribute = None):
     try:
@@ -49,30 +50,29 @@ def scrape_website(url:str , element:str, attribute_name = "div", attribute = No
         response.raise_for_status()  
 
         soup = BeautifulSoup(response.content, 'html.parser')
-
         scraped_text = ''
 
         if attribute:
-            scraped_text = soup.find(element, attrs={attribute_name: attribute})
+            scraped_text = soup.find_all(element, attrs={attribute_name: attribute})
         else:
-            soup.find(element)
+            scraped_text = soup.find_all(element)
 
-        return print_scraped_text(scraped_text)
+        return strip_text(scraped_text)
 
     except Exception as e:
         return (f"An error occurred while scraping the website: {e}")
     
-def print_scraped_text(scraped_text):
-    if scraped_text:
-        return scraped_text
-    else:
-        return "Nothing found."
-    
-# def strip_text(scraped_text):
-#     stripped_text = []
-#     for text in scraped_text:
-#         # print(text.get_text(strip=True))
-#         return text.append(stripped_text)
+def strip_text(scraped_text):
+    stripped_text_list = []
+
+    if scraped_text is False:
+        stripped_text_list.append("Nothing Found")
+        return stripped_text_list
+        
+    for text in scraped_text:
+        stripped_text_list.append(text.get_text(strip=True))
+
+    return stripped_text_list
 
 # standard entry point
 if __name__ == "__main__":
