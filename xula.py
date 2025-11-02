@@ -29,10 +29,13 @@ def getsynnony(word):
     pass  # placeholder for future implementation
 
 # Core Methods
-def process_sentence(sentence, noun_flag):
+def process_sentence(self,sentence, noun_flag):
     # TODO [Lead @SMAX-byte + Designer @zodagoatfr]: Implement the main sentence processing logic
     # This function should:
-    # 1. Split the sentence into words
+    # 1. Split the sentence into 
+    words = sentence.split()
+    return[self.getsynnony(word) for word in words]
+    
     # 2. Call getsynnony() on each word
     # 3. Rebuild the new sentence
     # 4. Return the result
