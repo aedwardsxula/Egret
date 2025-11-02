@@ -6,7 +6,20 @@ import sys
 
 # constants & globals (if really needed)
 # TODO [All]: Add constants or session objects if required (e.g., skip words, API sessions)
+class SynonymProcessor:
+    def __init__(self, skip_file='skip.txt', noun_flag=True):
+        self.skip = self.load_skip_list(skip_file)
+        self.noun_flag = noun_flag
+        self.session = requests.session()
+        self.skiptext = 0
+        self.tochange = 0
 
+    def load_skip_list(self, skip_file):
+        try:
+            with open(skip_file, 'r') as f:
+                return set(line.strip().lower() for line in f if line.strip())
+        except FileNotFoundError:
+            return set()
 
 # helper functions
 def getsynnony(word):
