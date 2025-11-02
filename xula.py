@@ -7,6 +7,7 @@ import sys
 # constants & globals (if really needed)
 # TODO [All]: Add constants or session objects if required (e.g., skip words, API sessions)
 
+
 # helper functions
 def getsynnony(word):
     # TODO [ Tester @ kyleighharkless]: Implement the logic to fetch synonyms from the thesaurus API
