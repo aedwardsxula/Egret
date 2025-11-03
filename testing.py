@@ -21,7 +21,7 @@ class TestFunction(unittest.TestCase):
 
     def test_actual_blank_page(self):
         result = scrape_website("https://example.com/blankpage", "div")
-        self.assertEqual(len(result), 0) # There is no content but it's still scraping something when it shouldn't
+        self.assertEqual(len(result), 0)
         self.assertEqual(result[0], "Nothing Found")
     
     def test_image_scrape(self):
