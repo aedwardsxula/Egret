@@ -29,6 +29,14 @@ class TestFunction(unittest.TestCase):
         attribute = "display: block;-webkit-user-select: none;margin: auto;cursor: zoom-in;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;"
         result = scrape_website(image_url, "img", "style", attribute)
         self.assertEqual(len(result), 0) #Something will be found but it won't be text
+    
+    def test_process_sentence(self):
+        from xula import SynonymProcessor
+        processor = SynonymProcessor()
+        sentence = "The quick brown fox jumps over the lazy dog."
+        result = processor.process_sentence(sentence, noun_flag=True)
+        self.assertIsInstance(result, list)
+        self.assertEqual(len(result), len(sentence.split()))
 
 
 if __name__ == '__main__':
