@@ -1,5 +1,6 @@
 # imports
 from scraper import scrape_website
+import requests
 import json
 import sys
 
@@ -25,7 +26,26 @@ def getsynnony(word):
     # TODO [ Tester @ kyleighharkless]: Implement the logic to fetch synonyms from the thesaurus API
     # This will replace the current pass
     # Example: handle vulgar/informal words, skip list, noun flag
-    pass  # placeholder for future implementation
+    base_url = f"https://words.bighugelabs.com/api/2/cee24d5035e97f0d3b7a81ccf18c99af/{word}/json"
+    try:
+        response = requests.get(base_url)
+        response.raise_for_status()
+        data = response.json()
+
+        synonyms = []
+        if 'noun' in data:
+            synonyms.extend(data['noun'].get('syn', []))
+        if 'verb' in data:
+            synonyms.extend(data['verb'].get('syn', []))
+        
+        if synonyms:
+            return list(set(synonyms)) 
+
+    except requests.RequestException as e:
+        return word  
+       
+    
+
 
 # Core Methods
 def process_sentence(self,sentence, noun_flag):
