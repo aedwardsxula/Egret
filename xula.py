@@ -22,27 +22,27 @@ class SynonymProcessor:
             return set()
 
 # helper functions
-def getsynnony(word):
+def get_Synnony(word):
     # TODO [ Tester @ kyleighharkless]: Implement the logic to fetch synonyms from the thesaurus API
     # This will replace the current pass
     # Example: handle vulgar/informal words, skip list, noun flag
-    base_url = f"https://words.bighugelabs.com/api/2/cee24d5035e97f0d3b7a81ccf18c99af/{word}/json"
+    base_url = f"https://api.datamuse.com/words?rel_syn={word}"
     try:
         response = requests.get(base_url)
         response.raise_for_status()
         data = response.json()
 
         synonyms = []
-        if 'noun' in data:
-            synonyms.extend(data['noun'].get('syn', []))
-        if 'verb' in data:
-            synonyms.extend(data['verb'].get('syn', []))
+        for item in data:
+            synonyms.append(item['word'])
         
         if synonyms:
             return list(set(synonyms)) 
+        else:
+            return ["Nothing found"]
 
     except requests.RequestException as e:
-        return word  
+        return [f"Error fetching synonyms: {e}"]
        
     
 
@@ -56,7 +56,7 @@ def process_sentence(self,sentence, noun_flag):
      # 2. Call getsynnony() on each word
     # 3. Rebuild the new sentence
     # 4. Return the result
-    return[self.getsynnony(word) for word in words]
+    return[self.get_Synnony(word) for word in words]
     
 
 #  DRIVER / main 
@@ -75,6 +75,9 @@ def main():
                                               "color: #000000; font-family: verdana, geneva, sans-serif; font-size: 12pt;")
     campaign_impact_paragraph = 2
     print(f"\nXULA's Campaign Impact: \n{xula_centennial_campaign[campaign_impact_paragraph]}\n")
+
+    n = get_Synnony("happy")
+    print(n)
     
 
 
