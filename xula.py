@@ -22,10 +22,10 @@ class SynonymProcessor:
             return set()
 
 # helper functions
-def get_Synnony(word):
-    # TODO [ Tester @ kyleighharkless]: Implement the logic to fetch synonyms from the thesaurus API
+# TODO [ Tester @ kyleighharkless]: Implement the logic to fetch synonyms from the thesaurus API
     # This will replace the current pass
     # Example: handle vulgar/informal words, skip list, noun flag
+def get_Synnony(word):
     base_url = f"https://api.datamuse.com/words?rel_syn={word}"
     try:
         response = requests.get(base_url)
@@ -43,9 +43,6 @@ def get_Synnony(word):
 
     except requests.RequestException as e:
         return [f"Error fetching synonyms: {e}"]
-       
-    
-
 
 # Core Methods
 def process_sentence(self,sentence, noun_flag):
@@ -58,7 +55,6 @@ def process_sentence(self,sentence, noun_flag):
     # 4. Return the result
     return[self.get_Synnony(word) for word in words]
     
-
 #  DRIVER / main 
 def main():
     # TODO [Lead @SMAX-byte]: Handle command-line arguments (-s, -nonoun) or interactive input
@@ -75,12 +71,6 @@ def main():
                                               "color: #000000; font-family: verdana, geneva, sans-serif; font-size: 12pt;")
     campaign_impact_paragraph = 2
     print(f"\nXULA's Campaign Impact: \n{xula_centennial_campaign[campaign_impact_paragraph]}\n")
-
-    n = get_Synnony("happy")
-    print(n)
-    
-
-
 
 # standard entry point
 if __name__ == "__main__":
