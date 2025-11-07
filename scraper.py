@@ -33,3 +33,7 @@ def strip_text(scraped_text):
         stripped_text_list.append(text.get_text(strip=True))
 
     return stripped_text_list
+
+def get_centennial_campaign_impact():
+    url = "https://www.xula.edu/about/centennial.html"
+    return scrape_website(url, element="div", attribute_name="class", attribute="entry-content")
