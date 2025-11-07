@@ -27,21 +27,6 @@ Our goal is to analyze, enhance, and document six repositories — improving the
 4. [Sorting Visualiser (Java)](https://github.com/Sarvesh223/Sorting_Visualiser_minor) — Java sorting visualizer project. ([GitHub][5])
 5. [Sentiment Analysis of Twitter Data](https://github.com/sharmaroshan/Twitter-Sentiment-Analysis) — Twitter-sentiment project. ([GitHub][6])
 
-## 🚀 XULA Driver
--  
-
-
-## 🎨 Design & Branding
--  
--  
--  
-
-
-## 🧩 UML Class Diagrams
--  
--  
-
-
 
 ## 🧪 Testing Plan
 Each team member will contribute to testing based on their roles:
