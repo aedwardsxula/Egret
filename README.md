@@ -49,6 +49,18 @@ The Software Engineer will create a `CONTRIBUTING.md` file outlining:
 - Testing requirements before submitting commits  
 
 
+## 🖼️ Project Visuals
+Below are the required visual assets for Team Egret’s open-source project.
+
+### Brand Image
+![Brand Image](assets/brand.png)
+
+### Favicon
+![Favicon](assets/favicon.png)
+
+### UML Diagram
+![UML Diagram](assets/Egret_UML.png)
+
 
 ## 🧾 License
 A proper open-source LICENSE file will be created and committed to the repo.  
