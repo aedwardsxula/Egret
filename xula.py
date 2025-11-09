@@ -2,6 +2,7 @@
 from scraper import scrape_website
 import json
 import sys
+import requests
 
 # constants & globals (if really needed)
 # TODO [All]: Add constants or session objects if required (e.g., skip words, API sessions)
