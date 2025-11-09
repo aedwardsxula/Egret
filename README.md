@@ -14,6 +14,23 @@ Our goal is to analyze, enhance, and document six repositories — improving the
 
 ---
 
+---
+
+## 🖼️ Project Assets
+
+### Brand Image  
+![Team Egret Brand](Assets/brand.png)
+
+### Favicon  
+![Egret Favicon](Assets/favicon.png)
+
+### UML Class Diagram  
+![ProtectFromPlagiarismChecker UML](Assets/uml.png)
+
+---
+
+
+
 ### 🗂️ Selected Repository
 
 1. [ProtectFromPlagiarismChecker](https://github.com/aks060/ProtectFromPlagiarismChecker) — Python script by @aks060. ([GitHub][1])
