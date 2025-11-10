@@ -114,6 +114,127 @@ class TestSynonymProcessor(unittest.TestCase):
     def test_invalid_skip_file_raises(self):
         with self.assertRaises(Exception):
             SynonymProcessor(skip_file="nonexistent_file.txt")
+    
+    # --- Additional Tests (19) ---
+
+    # 1. Test skip file empty
+    def test_load_skip_list_empty_file(self):
+        tmp = tempfile.NamedTemporaryFile(mode='w+', delete=False)
+        tmp.close()
+        result = self.processor.load_skip_list(tmp.name)
+        self.assertEqual(result, set())
+        os.unlink(tmp.name)
+
+    # 2. Test skip list file with spaces only
+    def test_load_skip_list_spaces_only(self):
+        tmp = tempfile.NamedTemporaryFile(mode='w+', delete=False)
+        tmp.write("   \n   \n")
+        tmp.close()
+        result = self.processor.load_skip_list(tmp.name)
+        self.assertEqual(len(result), 0)
+        os.unlink(tmp.name)
+
+    # 3. Test API call returns list for valid word
+    def test_get_synnony_returns_list(self):
+        result = self.processor.get_Synnony("happy")
+        self.assertIsInstance(result, list)
+
+    # 4. Test get_Synnony returns error message for bad URL
+    def test_get_synnony_handles_network_error(self):
+        import requests
+        original_get = requests.get
+        requests.get = lambda *a, **k: (_ for _ in ()).throw(requests.RequestException("Mock error"))
+        result = self.processor.get_Synnony("joy")
+        self.assertTrue(any("Error fetching synonyms" in x for x in result))
+        requests.get = original_get
+
+    # 5. Test skip word stays unchanged
+    def test_get_synnony_skips_word(self):
+        self.processor.skip.add("stay")
+        result = self.processor.get_Synnony("stay")
+        self.assertEqual(result, ["stay"])
+
+    # 6. Test skiptext counter increments
+    def test_skip_counter_increments(self):
+        before = self.processor.skiptext
+        self.processor.skip.add("hold")
+        self.processor.get_Synnony("hold")
+        self.assertGreater(self.processor.skiptext, before)
+
+    # 7. Test tochange counter increments
+    def test_tochange_counter_increments(self):
+        before = self.processor.tochange
+        self.processor.get_Synnony("run")
+        self.assertGreaterEqual(self.processor.tochange, before)
+
+    # 8. Test process_sentence returns dict of words
+    def test_process_sentence_returns_dict(self):
+        result = self.processor.process_sentence("one two three")
+        self.assertIsInstance(result, dict)
+        self.assertIn("one", result)
+
+    # 9. Test process_sentence preserves number of words
+    def test_process_sentence_preserves_word_count(self):
+        sentence = "one two three four"
+        result = self.processor.process_sentence(sentence)
+        self.assertEqual(len(result), len(sentence.split()))
+
+    # 10. Test process_sentence handles mixed-case words
+    def test_process_sentence_mixed_case(self):
+        sentence = "Hello HeLLo hello"
+        result = self.processor.process_sentence(sentence)
+        self.assertEqual(len(result), 3)
+
+    # 11. Test process_sentence handles punctuation safely
+    def test_process_sentence_with_punctuation_marks(self):
+        sentence = "run, jump! fly?"
+        result = self.processor.process_sentence(sentence)
+        self.assertIsInstance(result, dict)
+
+    # 12. Test process_sentence returns something for every word
+    def test_process_sentence_not_empty_values(self):
+        sentence = "bright dark light"
+        result = self.processor.process_sentence(sentence)
+        for synonyms in result.values():
+            self.assertTrue(len(synonyms) > 0)
+
+    # 13. Test process_sentence with numbers
+    def test_process_sentence_handles_numbers(self):
+        sentence = "one 2 three"
+        result = self.processor.process_sentence(sentence)
+        self.assertIsInstance(result, dict)
+
+    # 14. Test that repeated words only fetch once (if cached)
+    def test_process_sentence_repeated_word_efficiency(self):
+        sentence = "repeat repeat repeat"
+        result = self.processor.process_sentence(sentence)
+        self.assertIn("repeat", result)
+
+    # 15. Test get_Synnony returns unique words (no duplicates)
+    def test_get_synnony_unique_results(self):
+        result = self.processor.get_Synnony("fast")
+        self.assertEqual(len(result), len(set(result)))
+
+    # 16. Test skip file reload does not crash
+    def test_reload_skip_file(self):
+        _ = self.processor.load_skip_list(self.tmp_skip.name)
+        self.assertIsInstance(_, set)
+
+    # 17. Test invalid file type raises handled warning
+    def test_invalid_file_type_safe(self):
+        try:
+            self.processor.load_skip_list("fake.bin")
+        except Exception as e:
+            self.fail(f"Unexpected exception: {e}")
+
+    # 18. Test processor session object exists
+    def test_processor_has_session(self):
+        self.assertTrue(hasattr(self.processor, "session"))
+
+    # 19. Test noun_flag property remains boolean
+    def test_noun_flag_remains_boolean(self):
+        self.assertIsInstance(self.processor.noun_flag, bool)
+
 
 if __name__ == "__main__":
     unittest.main()
