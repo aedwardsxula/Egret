@@ -75,6 +75,23 @@ def process_sentence(self,sentence, noun_flag):
     # 4. Return the result
     return[self.getsynnony(word) for word in words]
     
+class ChangeTracker:
+    def __init__(self):
+        self.total_words = 0
+        self.changed_words = 0
+
+    def record(self, original, new):
+        self.total_words += 1
+        if original != new:
+            self.changed_words += 1
+
+    def summary(self):
+        return f"Words changed: {self.changed_words} out of {self.total_words}"
+
+    def reset(self):
+        self.total_words = 0
+        self.changed_words = 0
+
 
 #  DRIVER / main 
 def main():
