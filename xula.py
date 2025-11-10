@@ -33,6 +33,13 @@ class SynonymProcessor:
         self.tochange = 0
         self.change_rate = change_rate  # percentage of words to change (0.0–1.0)
 
+    def load_skip_list(self, skip_file):
+        try:
+            with open(skip_file, 'r') as f:
+                return set(line.strip().lower() for line in f if line.strip())
+        except FileNotFoundError:
+            return set()
+
     def process_sentence(self, sentence, noun_flag=None):
         if noun_flag is None:
             noun_flag = self.noun_flag
