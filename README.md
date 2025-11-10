@@ -6,13 +6,23 @@
 - Software Engineer (SWE): @justrobin14  
 - Tester: @kyleighharkless  
 
----
 
 ## 🧭 Project Overview
 Team Egret will be improving and expanding upon selected open-source repositories as part of the XULA Software Engineering Project.  
 Our goal is to analyze, enhance, and document six repositories — improving their functionality, readability, and testing coverage while demonstrating collaborative software development practices.
 
----
+
+## 🖼️ Project Assets
+
+### Brand Image  
+![Team Egret Brand](Assets/brand.png)
+
+### Favicon  
+![Egret Favicon](Assets/favicon.png)
+
+### UML Class Diagram  
+![ProtectFromPlagiarismChecker UML](Assets/uml.png)
+
 
 ### 🗂️ Selected Repository
 
@@ -26,21 +36,6 @@ Our goal is to analyze, enhance, and document six repositories — improving the
 3. [IMDB Top Scrape](https://github.com/Devanshi1206/IMDb-Top-250-Movies) — Python scraping project. ([GitHub][4])
 4. [Sorting Visualiser (Java)](https://github.com/Sarvesh223/Sorting_Visualiser_minor) — Java sorting visualizer project. ([GitHub][5])
 5. [Sentiment Analysis of Twitter Data](https://github.com/sharmaroshan/Twitter-Sentiment-Analysis) — Twitter-sentiment project. ([GitHub][6])
-
-## 🚀 XULA Driver
--  
-
-
-## 🎨 Design & Branding
--  
--  
--  
-
-
-## 🧩 UML Class Diagrams
--  
--  
-
 
 
 ## 🧪 Testing Plan
@@ -63,6 +58,18 @@ The Software Engineer will create a `CONTRIBUTING.md` file outlining:
 - Pull request review and merge procedures  
 - Testing requirements before submitting commits  
 
+
+## 🖼️ Project Visuals
+Below are the required visual assets for Team Egret’s open-source project.
+
+### Brand Image
+![Brand Image](assets/brand.png)
+
+### Favicon
+![Favicon](assets/favicon.png)
+
+### UML Diagram
+![UML Diagram](assets/Egret_UML.png)
 
 
 ## 🧾 License
