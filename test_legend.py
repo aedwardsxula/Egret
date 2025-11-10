@@ -20,6 +20,11 @@ class TestSynonymProcessor(unittest.TestCase):
         self.processor.load_skip_list("empty_skip.txt")  
         self.assertEqual(len(self.processor.skip), 0)
 
+    def test_load_skip_list_with_duplicates(self):
+        self.processor.load_skip_list("duplicate_skip.txt")
+        self.assertEqual(len(self.processor.skip), len(set(self.processor.skip)))
+
+
 
     def test_process_sentence_returns_expected_output(self):
         sentence = "The quick brown fox jumps over the lazy dog."
