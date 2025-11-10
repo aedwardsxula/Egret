@@ -6,15 +6,11 @@
 - Software Engineer (SWE): @justrobin14  
 - Tester: @kyleighharkless  
 
----
 
 ## 🧭 Project Overview
 Team Egret will be improving and expanding upon selected open-source repositories as part of the XULA Software Engineering Project.  
 Our goal is to analyze, enhance, and document six repositories — improving their functionality, readability, and testing coverage while demonstrating collaborative software development practices.
 
----
-
----
 
 ## 🖼️ Project Assets
 
@@ -26,9 +22,6 @@ Our goal is to analyze, enhance, and document six repositories — improving the
 
 ### UML Class Diagram  
 ![ProtectFromPlagiarismChecker UML](Assets/uml.png)
-
----
-
 
 
 ### 🗂️ Selected Repository
