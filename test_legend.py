@@ -48,4 +48,9 @@ class TestSynonymProcessor(unittest.TestCase):
         self.assertNotIn("fox", result)
         self.assertNotIn("dog", result)
 
+    def test_custom_initialization(self):
+        custom_processor = SynonymProcessor(skip_file="custom.txt", noun_flag=False)
+        self.assertFalse(custom_processor.noun_flag)
+        self.assertIsInstance(custom_processor.skip, set)
+
 
