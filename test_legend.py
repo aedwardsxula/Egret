@@ -24,6 +24,9 @@ class TestSynonymProcessor(unittest.TestCase):
         self.processor.load_skip_list("duplicate_skip.txt")
         self.assertEqual(len(self.processor.skip), len(set(self.processor.skip)))
 
+    def test_process_sentence_empty_string(self):
+        result = self.processor.process_sentence("", noun_flag=True)
+        self.assertEqual(result, "")
 
 
     def test_process_sentence_returns_expected_output(self):
