@@ -41,3 +41,11 @@ class TestSynonymProcessor(unittest.TestCase):
         result_without_noun = self.processor.process_sentence(sentence, noun_flag=False)
         self.assertNotEqual(result_with_noun, result_without_noun)
 
+    def test_process_sentence_skips_words(self):
+        self.processor.skip = {"fox", "dog"}
+        sentence = "The quick brown fox jumps over the lazy dog."
+        result = self.processor.process_sentence(sentence, noun_flag=True)
+        self.assertNotIn("fox", result)
+        self.assertNotIn("dog", result)
+
+
