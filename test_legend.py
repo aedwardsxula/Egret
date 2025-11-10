@@ -21,3 +21,11 @@ class TestSynonymProcessor(unittest.TestCase):
         result = self.processor.process_sentence(sentence, noun_flag=True)
         self.assertIsInstance(result, str)
         self.assertNotEqual(result, "")
+
+    def test_process_sentence_respects_noun_flag(self):
+        sentence = "Cats chase mice."
+        result_with_noun = self.processor.process_sentence(sentence, noun_flag=True)
+        result_without_noun = self.processor.process_sentence(sentence, noun_flag=False)
+        self.assertNotEqual(result_with_noun, result_without_noun)
+
+        
