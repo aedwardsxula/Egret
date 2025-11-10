@@ -1,5 +1,5 @@
 import unittest
-from synonym_processor import SynonymProcessor
+from xula import SynonymProcessor
 
 class TestSynonymProcessor(unittest.TestCase):
     def setUp(self):
@@ -28,4 +28,3 @@ class TestSynonymProcessor(unittest.TestCase):
         result_without_noun = self.processor.process_sentence(sentence, noun_flag=False)
         self.assertNotEqual(result_with_noun, result_without_noun)
 
-        
