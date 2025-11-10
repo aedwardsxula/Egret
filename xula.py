@@ -5,20 +5,49 @@ import sys
 
 # constants & globals (if really needed)
 # TODO [All]: Add constants or session objects if required (e.g., skip words, API sessions)
+
+# class SynonymProcessor:
+#     def __init__(self, skip_file='skip.txt', noun_flag=True):
+#         self.skip = self.load_skip_list(skip_file)
+#         self.noun_flag = noun_flag
+#         self.session = requests.session()
+#         self.skiptext = 0
+#         self.tochange = 0
+
+#     def load_skip_list(self, skip_file):
+#         try:
+#             with open(skip_file, 'r') as f:
+#                 return set(line.strip().lower() for line in f if line.strip())
+#         except FileNotFoundError:
+#             return set()
+        
+import random
+
 class SynonymProcessor:
-    def __init__(self, skip_file='skip.txt', noun_flag=True):
+    def __init__(self, skip_file='skip.txt', noun_flag=True, change_rate=1.0):
         self.skip = self.load_skip_list(skip_file)
         self.noun_flag = noun_flag
         self.session = requests.session()
         self.skiptext = 0
         self.tochange = 0
+        self.change_rate = change_rate  # percentage of words to change (0.0–1.0)
 
-    def load_skip_list(self, skip_file):
-        try:
-            with open(skip_file, 'r') as f:
-                return set(line.strip().lower() for line in f if line.strip())
-        except FileNotFoundError:
-            return set()
+    def process_sentence(self, sentence, noun_flag=None):
+        if noun_flag is None:
+            noun_flag = self.noun_flag
+
+        words = sentence.split()
+        new_words = []
+
+        for word in words:
+            # roll the dice: should we change this word?
+            if random.random() < self.change_rate:
+                new_words.append(self.getsynnony(word) or word)
+            else:
+                new_words.append(word)
+
+        return " ".join(new_words)
+
 
 # helper functions
 def getsynnony(word):
