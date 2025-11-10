@@ -86,6 +86,9 @@ def get_Synnony(word):
 # Core Methods
 def process_sentence(self,sentence, noun_flag):
     # TODO [Lead @SMAX-byte + Designer @zodagoatfr]: Implement the main sentence processing logic
+   if not sentence.strip():
+        print("No words to process.")
+        return ""
     # This function should:
     # 1. Split the sentence into 
     words = sentence.split()
@@ -94,6 +97,24 @@ def process_sentence(self,sentence, noun_flag):
     # 4. Return the result
     return[self.get_Synnony(word) for word in words]
     
+class ChangeTracker:
+    def __init__(self):
+        self.total_words = 0
+        self.changed_words = 0
+
+    def record(self, original, new):
+        self.total_words += 1
+        if original != new:
+            self.changed_words += 1
+
+    def summary(self):
+        return f"Words changed: {self.changed_words} out of {self.total_words}"
+
+    def reset(self):
+        self.total_words = 0
+        self.changed_words = 0
+
+
 #  DRIVER / main 
 def main():
     # TODO [Lead @SMAX-byte]: Handle command-line arguments (-s, -nonoun) or interactive input
