@@ -54,3 +54,6 @@ class TestSynonymProcessor(unittest.TestCase):
         self.assertIsInstance(custom_processor.skip, set)
 
 
+if __name__ == '__main__':
+    unittest.main()
+    
