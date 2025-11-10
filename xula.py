@@ -93,7 +93,10 @@ def main():
     campaign_impact_paragraph = 2
     print(f"\nXULA's Campaign Impact: \n{xula_centennial_campaign[campaign_impact_paragraph]}\n")
     
-
+    sentence = input("Enter a sentence: ")
+    processor = SynonymProcessor(skip_file="skip.txt", noun_flag=True, change_rate=0.3)
+    new_sentence = processor.process_sentence(sentence)
+    print("Processed sentence:", new_sentence)
 
 
 # standard entry point
