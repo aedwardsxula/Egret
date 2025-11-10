@@ -67,6 +67,9 @@ def getsynnony(word):
 # Core Methods
 def process_sentence(self,sentence, noun_flag):
     # TODO [Lead @SMAX-byte + Designer @zodagoatfr]: Implement the main sentence processing logic
+   if not sentence.strip():
+        print("No words to process.")
+        return ""
     # This function should:
     # 1. Split the sentence into 
     words = sentence.split()
