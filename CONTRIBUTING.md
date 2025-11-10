@@ -1,4 +1,4 @@
-Conrtibuting to Plagiarism Checker
+Contributing to Plagiarism Checker
 
 Team Egret
 
