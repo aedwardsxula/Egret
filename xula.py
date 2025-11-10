@@ -22,6 +22,7 @@ import sys
 #             return set()
         
 import random
+import requests
 
 class SynonymProcessor:
     def __init__(self, skip_file='skip.txt', noun_flag=True, change_rate=1.0):
