@@ -4,6 +4,7 @@ import requests
 import json
 import sys
 import requests
+import argparse
 
 # constants & globals (if really needed)
 # TODO [All]: Add constants or session objects if required (e.g., skip words, API sessions)
@@ -59,12 +60,23 @@ def process_sentence(self,sentence, noun_flag):
 #  DRIVER / main 
 def main():
     # TODO [Lead @SMAX-byte]: Handle command-line arguments (-s, -nonoun) or interactive input
-    # TODO [All]: Read skip.txt or other configuration files if needed
-    # TODO [All]: Call process_sentence() with proper arguments
-    # TODO [All]: Print or save the processed sentence
 
     print(" Team Egret XULA Driver running...")
-    
+    parser = argparse.ArgumentParser(description="Process a sentence to find synonyms.")
+    parser.add_argument('-s', '--sentence', type=str, help='Input sentence to process')
+    parser.add_argument('-nonoun', '--nonoun', action='store_true', help='Skip noun processing')
+    args = parser.parse_args()
+     # TODO [All]: Read skip.txt or other configuration files if needed
+    procesor = SynonymProcessor(noun_flag=not args.nonoun)
+
+     # TODO [All]: Call process_sentence() with proper arguments
+    if args.sentence:
+        result = procesor.process_sentence(args.sentence, procesor.noun_flag)
+     # TODO [All]: Print or save the processed sentence
+        print("Processed Sentence Synonyms:")
+        for word_synonyms in result:
+            print(word_synonyms)
+
     # Scrape Centennial Campaign Act
     xula_centennial_campaign = scrape_website("https://www.xula.edu/about/centennial.html",
                                               "span",
