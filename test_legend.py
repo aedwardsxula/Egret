@@ -11,3 +11,7 @@ class TestSynonymProcessor(unittest.TestCase):
         self.assertIsInstance(self.processor.session, object)  # Could be requests.Session
         self.assertEqual(self.processor.skiptext, 0)
         self.assertEqual(self.processor.tochange, 0)
+    
+    def test_load_skip_list_creates_skip_set(self):
+        self.processor.load_skip_list("test_skip.txt")
+        self.assertIn("example", self.processor.skip)
